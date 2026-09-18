@@ -42,7 +42,7 @@ Edita el objeto `CONFIG` al inicio del archivo:
 const CONFIG = {
   nombre: "Magarí",
   slogan: "Cafetería & Delicias Caseras",
-  whatsapp: "5493794123456", // Número en formato internacional sin espacios ni signos +
+  whatsapp: "5493774548640", // Número en formato internacional sin espacios ni signos +
   direccion: "Corrientes, Argentina",
   horarios: "Lunes a Sábado de 08:00 a 21:00",
   instagram: "@magari.talvez",

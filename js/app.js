@@ -13,8 +13,8 @@ const CONFIG = {
   nombre: "Magarí",
   slogan: "Cafetería & Delicias Caseras",
   // Formato internacional para Argentina: código país (54) + 9 + código de área + número
-  // Ejemplo: "5493794123456" (sin espacios, sin signos '+', sin guiones)
-  whatsapp: "549379XXXXXXXX",
+  // Ejemplo: "5493774548640" (sin espacios, sin signos '+', sin guiones)
+  whatsapp: "5493774548640",
   direccion: "Corrientes, Argentina",
   horarios: "Lunes a Sábado de 08:00 a 21:00",
   instagram: "@magari.talvez",
