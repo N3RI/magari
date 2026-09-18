@@ -2,64 +2,272 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Proyecto Magari - Estructura web estándar">
-  <title>Magari Project</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- SEO & Metadata -->
+  <title>Magari | Menú Digital & Pedidos por WhatsApp</title>
+  <meta name="description" content="Menú digital de Magari. Café de especialidad, delicias dulces y saladas caseras. Hacé tu pedido fácil y rápido por WhatsApp.">
+  <meta name="theme-color" content="#FAF6EE">
+  
+  <!-- Open Graph / WhatsApp Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Magari - Menú Digital">
+  <meta property="og:description" content="Descubrí nuestro menú de cafés, delicias dulces y saladas. Realizá tu pedido directamente por WhatsApp.">
+  
+  <!-- Google Fonts: Fraunces (handcrafted display serif) & Plus Jakarta Sans (clean mobile sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="app-container">
-    <header class="header">
-      <div class="logo">
-        <span class="logo-icon">🚀</span>
-        <span class="logo-text">Magari</span>
+  <!-- Background Sun Watermark Accent -->
+  <div class="sun-background-pattern" aria-hidden="true">
+    <svg class="sun-spiral sun-top-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 20C55.8 20 20 55.8 20 100C20 144.2 55.8 180 100 180C144.2 180 180 144.2 180 100C180 65 150 40 115 40C80 40 50 70 50 105C50 135 75 160 105 160C130 160 150 140 150 115C150 95 135 80 115 80C98 80 85 92 85 108C85 120 95 130 106 130" stroke="#E39D37" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="106" cy="106" r="6" fill="#E39D37"/>
+    </svg>
+    <svg class="sun-spiral sun-bottom-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 20C55.8 20 20 55.8 20 100C20 144.2 55.8 180 100 180C144.2 180 180 144.2 180 100C180 65 150 40 115 40C80 40 50 70 50 105C50 135 75 160 105 160C130 160 150 140 150 115C150 95 135 80 115 80C98 80 85 92 85 108C85 120 95 130 106 130" stroke="#E39D37" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="app-layout">
+    <!-- Header with Magari Branding -->
+    <header class="main-header">
+      <div class="header-content">
+        <div class="brand-block">
+          <div class="logo-wrapper">
+            <h1 class="brand-name">Magarí</h1>
+            <span class="brand-subtext">TAL VEZ</span>
+          </div>
+          <p id="headerSlogan" class="brand-slogan">Cafetería & Delicias Caseras</p>
+        </div>
+
+        <button id="headerCartBtn" class="header-cart-btn" aria-label="Abrir carrito de compras">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-badge" id="headerCartBadge">0</span>
+        </button>
       </div>
-      <nav class="nav">
-        <button id="themeToggle" class="btn-icon" aria-label="Cambiar tema">🌙</button>
-      </nav>
+
+      <!-- Quick Info Bar (Hours & Status) -->
+      <div class="quick-status-bar">
+        <span class="status-indicator">
+          <span class="status-dot online"></span>
+          <span>Abierto hoy</span>
+        </span>
+        <span class="status-separator">•</span>
+        <span class="status-hours" id="quickHours">08:00 a 21:00 hs</span>
+      </div>
     </header>
 
-    <main class="main-content">
-      <section class="hero">
-        <span class="badge">Proyecto Inicializado con Éxito</span>
-        <h1 class="hero-title">Bienvenido a <span class="gradient-text">Magari</span></h1>
-        <p class="hero-subtitle">
-          Tu nuevo proyecto web estándar con HTML5, CSS3 y JavaScript moderno está listo para despegar.
-        </p>
-        <div class="hero-actions">
-          <button id="actionBtn" class="btn btn-primary">Haz clic aquí</button>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Ir a GitHub</a>
-        </div>
-        <p id="counterFeedback" class="counter-text">Has hecho clic <span id="clickCount">0</span> veces</p>
-      </section>
+    <!-- Search & Category Filters -->
+    <nav class="categories-nav" aria-label="Categorías del menú">
+      <div class="search-box-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Buscar en el menú (ej. Latte, Chocotorta...)" autocomplete="off">
+        <button id="clearSearchBtn" class="clear-search-btn" aria-label="Limpiar búsqueda" style="display: none;">✕</button>
+      </div>
 
-      <section class="features">
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Rápido y Ligero</h3>
-          <p>Estructura nativa sin sobrecarga de dependencias ni compilaciones lentas.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎨</div>
-          <h3>Diseño Moderno</h3>
-          <p>Variables CSS, soporte para tema claro/oscuro y diseño responsivo fluido.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>Control de Versiones</h3>
-          <p>Listo para sincronizar con tu repositorio de GitHub mediante Git.</p>
-        </div>
-      </section>
+      <div class="categories-scroll" id="categoriesContainer">
+        <!-- Rendered dynamically from app.js -->
+      </div>
+    </nav>
+
+    <!-- Main Content: Products Grid -->
+    <main class="menu-container">
+      <div class="menu-header">
+        <h2 id="activeCategoryTitle" class="menu-category-title">MENÚ</h2>
+        <span id="productCountBadge" class="product-count-badge">Cargando...</span>
+      </div>
+
+      <div id="productsGrid" class="products-grid">
+        <!-- Rendered dynamically from app.js -->
+      </div>
+
+      <div id="noResults" class="no-results-state" style="display: none;">
+        <span class="no-results-icon">☕</span>
+        <h3>No encontramos lo que buscas</h3>
+        <p>Probá buscando con otra palabra o seleccioná otra categoría.</p>
+        <button id="resetSearchBtn" class="btn btn-secondary">Ver todo el menú</button>
+      </div>
     </main>
 
-    <footer class="footer">
-      <p>&copy; <span id="year"></span> Magari. Creado con ❤️.</p>
+    <!-- Business Info Footer -->
+    <footer class="main-footer">
+      <div class="footer-card">
+        <div class="footer-brand">
+          <h3 class="footer-logo">Magarí <span class="footer-logo-sub">TAL VEZ</span></h3>
+          <p id="footerSlogan">Cafetería & Delicias Caseras</p>
+        </div>
+
+        <div class="footer-info-grid">
+          <div class="footer-info-item">
+            <span class="info-icon">📍</span>
+            <div>
+              <strong>Ubicación</strong>
+              <p id="footerAddress">Dirección del local</p>
+            </div>
+          </div>
+          <div class="footer-info-item">
+            <span class="info-icon">⏰</span>
+            <div>
+              <strong>Horarios</strong>
+              <p id="footerHours">Lunes a Sábado de 08:00 a 21:00</p>
+            </div>
+          </div>
+          <div class="footer-info-item">
+            <span class="info-icon">🛵</span>
+            <div>
+              <strong>Modalidad</strong>
+              <p>Take Away (Retiro en local) & Delivery</p>
+            </div>
+          </div>
+          <div class="footer-info-item">
+            <span class="info-icon">💳</span>
+            <div>
+              <strong>Medios de Pago</strong>
+              <p id="footerPayments">Efectivo, Transferencia, Mercado Pago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-actions">
+          <a id="footerWhatsappLink" href="#" target="_blank" rel="noopener noreferrer" class="footer-btn whatsapp-link">
+            <span>💬</span> Consultas por WhatsApp
+          </a>
+          <a id="footerInstagramLink" href="#" target="_blank" rel="noopener noreferrer" class="footer-btn instagram-link">
+            <span>📷</span> Instagram
+          </a>
+        </div>
+
+        <p class="copyright">&copy; <span id="currentYear"></span> Magarí. Todos los derechos reservados.</p>
+      </div>
     </footer>
   </div>
 
+  <!-- Floating Mobile Cart Button -->
+  <aside class="floating-cart-wrapper" id="floatingCartWrapper" style="display: none;">
+    <button id="floatingCartBtn" class="floating-cart-btn" aria-label="Ver pedido">
+      <div class="floating-cart-left">
+        <span class="floating-cart-icon">🛒</span>
+        <span class="floating-cart-count" id="floatingCartCount">0 ítems</span>
+      </div>
+      <div class="floating-cart-center">
+        <span>Ver pedido</span>
+      </div>
+      <div class="floating-cart-right">
+        <span id="floatingCartTotal">$0</span>
+        <span class="floating-cart-arrow">→</span>
+      </div>
+    </button>
+  </aside>
+
+  <!-- Cart Modal / Bottom Sheet -->
+  <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+  <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <!-- Top Drag Handle for Mobile Touch -->
+    <div class="drawer-handle-bar" id="drawerHandleBar">
+      <div class="drawer-handle"></div>
+    </div>
+
+    <div class="cart-header">
+      <div class="cart-title-wrapper">
+        <h3 id="cartTitle" class="cart-title">Tu Pedido</h3>
+        <span class="cart-subtitle" id="cartItemsCountText">0 productos seleccionados</span>
+      </div>
+      <div class="cart-header-actions">
+        <button id="clearCartBtn" class="btn-text-danger" title="Vaciar todo el pedido">Vaciar</button>
+        <button id="closeCartBtn" class="btn-close" aria-label="Cerrar pedido">✕</button>
+      </div>
+    </div>
+
+    <!-- Scrollable Items List -->
+    <div class="cart-body">
+      <div id="cartEmptyState" class="cart-empty-state">
+        <span class="cart-empty-icon">🧺</span>
+        <h4>Tu pedido está vacío</h4>
+        <p>Elegí tus favoritos del menú para empezar tu pedido.</p>
+        <button id="cartExploreBtn" class="btn btn-primary">Explorar menú</button>
+      </div>
+
+      <div id="cartItemsList" class="cart-items-list">
+        <!-- Rendered dynamically from app.js -->
+      </div>
+
+      <!-- Customer Form Section (Visible when items > 0) -->
+      <section id="cartFormSection" class="cart-form-section" style="display: none;">
+        <h4 class="form-section-title">Datos para la Entrega</h4>
+        
+        <div class="delivery-toggle-group">
+          <label class="delivery-option">
+            <input type="radio" name="tipoEntrega" value="Retiro en local" checked>
+            <span class="delivery-card">
+              <span class="delivery-icon">🏪</span>
+              <span class="delivery-text">Retiro en local</span>
+            </span>
+          </label>
+          <label class="delivery-option">
+            <input type="radio" name="tipoEntrega" value="Envío a domicilio">
+            <span class="delivery-card">
+              <span class="delivery-icon">🛵</span>
+              <span class="delivery-text">Envío a domicilio</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="input-group">
+          <label for="clienteNombre">Tu Nombre <span class="required">*</span></label>
+          <input type="text" id="clienteNombre" placeholder="¿A nombre de quién?" required>
+        </div>
+
+        <div class="input-group" id="direccionGroup" style="display: none;">
+          <label for="clienteDireccion">Dirección de Entrega <span class="required">*</span></label>
+          <input type="text" id="clienteDireccion" placeholder="Calle, número, piso/dpto">
+        </div>
+
+        <div class="input-group">
+          <label for="clienteObservaciones">Observaciones o Aclaraciones</label>
+          <textarea id="clienteObservaciones" rows="2" placeholder="Ej: Sin azúcar, tostado bien dorado, etc."></textarea>
+        </div>
+      </section>
+    </div>
+
+    <!-- Cart Footer with Totals and WhatsApp CTA -->
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cartSubtotal" class="summary-value">$0</span>
+      </div>
+      <div class="cart-summary-line total-line">
+        <span>Total a Pagar</span>
+        <span id="cartTotal" class="total-value">$0</span>
+      </div>
+
+      <button id="sendWhatsAppBtn" class="btn btn-whatsapp">
+        <span class="whatsapp-btn-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.176L2 22l4.957-1.399C8.423 21.499 10.155 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+          </svg>
+        </span>
+        <span>Enviar Pedido por WhatsApp</span>
+      </button>
+
+      <p class="cart-disclaimer">
+        Se abrirá tu aplicación de WhatsApp con el pedido listo para enviar.
+      </p>
+    </div>
+  </div>
+
+  <!-- Product Added Toast / Notification -->
+  <div id="toastNotification" class="toast-notification" aria-live="polite">
+    <span class="toast-icon">✨</span>
+    <span id="toastMessage">Producto agregado</span>
+  </div>
+
+  <!-- Application Logic -->
   <script src="js/app.js"></script>
 </body>
 </html>

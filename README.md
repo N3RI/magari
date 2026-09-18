@@ -1,55 +1,102 @@
-# Magari 🚀
+# Magarí ☕✨
 
-Proyecto web estándar con HTML5, CSS3 y JavaScript moderno, preparado para control de versiones con Git y GitHub.
+Menú digital interactivo para cafetería y local gastronómico, desarrollado **exclusivamente con HTML5, CSS3 y JavaScript vanilla**. Diseñado especialmente para dispositivos móviles, con estética cálida artesanal basada en la carta física de Magarí y sistema de pedidos directo por WhatsApp.
+
+---
+
+## 🌟 Características
+
+- **100% Configurable desde `js/app.js`**: El dueño del local no necesita tocar HTML ni CSS para actualizar precios, productos, horarios o el teléfono.
+- **Catálogo Completo Integrado**: Incluye todos los productos de la carta física (Bebidas, Comida Dulce y Comida Salada) con sus precios reales.
+- **Carrito Interactivo Mobile-First**: Panel deslizable / bottom sheet para teléfonos, botón flotante inferior permanente con contador de ítems y total en vivo.
+- **Envío Directo a WhatsApp (`wa.me`)**: Genera el mensaje formateado con emojis, cantidades, subtotales, total, tipo de entrega (Retiro / Delivery), nombre y observaciones.
+- **Persistencia en LocalStorage**: Si el cliente recarga la página, su pedido no se pierde.
+- **Fallback Inteligente de Imágenes**: Si aún no agregaste una foto a la carpeta `img/`, la tarjeta muestra una ilustración estilizada con la paleta y el ícono correspondiente sin romperse.
+- **Buscador en Tiempo Real y Filtro de Categorías**: Encuentra cualquier producto al instante.
+- **Soporte para Productos Agotados**: Posibilidad de marcar `disponible: false` para deshabilitar el botón y mostrar la etiqueta "AGOTADO".
+
+---
 
 ## 📁 Estructura del Proyecto
 
 ```text
 magari/
-├── .gitignore         # Configuración de exclusiones para Git
-├── README.md          # Documentación del proyecto
-├── index.html         # Documento principal HTML5 semántico
+├── index.html         # Estructura semántica, SEO y Open Graph
 ├── css/
-│   └── styles.css     # Estilos responsivos con CSS Custom Properties y modo oscuro/claro
-└── js/
-    └── app.js         # Lógica interactiva en JavaScript moderno
-```
-
-## 🛠️ Cómo ejecutar el proyecto localmente
-
-Puedes abrir directamente el archivo `index.html` en tu navegador favorito, o iniciar un servidor local rápido:
-
-### Con Python 3:
-```bash
-python3 -m http.server 8000
-```
-Luego abre [http://localhost:8000](http://localhost:8000) en tu navegador.
-
-### Con Node.js:
-```bash
-npx serve .
+│   └── styles.css     # Estilos responsive mobile-first y paleta oficial Magarí
+├── js/
+│   └── app.js         # Configuración del negocio, catálogo y lógica del carrito
+└── img/               # Fotos de los productos (agregadas manualmente)
+    └── README.md
 ```
 
 ---
 
-## 🔗 Conexión con GitHub
+## 🛠️ Guía Rápida de Modificación (`js/app.js`)
 
-### 1. Clave SSH
-Se ha generado un par de claves SSH en `~/.ssh/id_ed25519`.
-Para vincular tu equipo con GitHub:
-1. Copia tu clave pública SSH:
-   ```bash
-   cat ~/.ssh/id_ed25519.pub
-   ```
-2. Ve a [GitHub SSH Keys](https://github.com/settings/keys).
-3. Haz clic en **"New SSH key"**, asígnale un título (por ejemplo: `Laptop` o `Escritorio`) y pega la clave.
-4. Haz clic en **"Add SSH key"**.
+Todo el menú se administra desde el archivo **`js/app.js`**:
 
-### 2. Crear y Vincular el Repositorio Remoto
-1. Crea un nuevo repositorio en [GitHub](https://github.com/new) llamado `magari` (déjalo vacío, sin README ni .gitignore adicionales).
-2. Vincula tu repositorio local con el remoto ejecutando en esta carpeta:
-   ```bash
-   git remote add origin git@github.com:<TU_USUARIO_GITHUB>/magari.git
-   git branch -M main
-   git push -u origin main
-   ```
+### 1. Cambiar nombre, eslogan, WhatsApp u horarios
+Edita el objeto `CONFIG` al inicio del archivo:
+```javascript
+const CONFIG = {
+  nombre: "Magarí",
+  slogan: "Cafetería & Delicias Caseras",
+  whatsapp: "5493794123456", // Número en formato internacional sin espacios ni signos +
+  direccion: "Corrientes, Argentina",
+  horarios: "Lunes a Sábado de 08:00 a 21:00",
+  instagram: "@magari.talvez",
+  metodosPago: "Efectivo, Transferencia, Mercado Pago"
+};
+```
+
+### 2. Cambiar el precio de un producto
+Busca el producto por su nombre en el array `PRODUCTOS` y modifica el valor numérico (sin comillas ni signos `$`). Por ejemplo:
+```javascript
+{
+  id: 1,
+  nombre: "Café",
+  precio: 2800, // <-- Nuevo precio
+  ...
+}
+```
+
+### 3. Marcar un producto como Agotado
+Cambia la propiedad `disponible` a `false`:
+```javascript
+{
+  id: 19,
+  nombre: "Chocotorta",
+  disponible: false // <-- Se mostrará como "AGOTADO" y no se podrá agregar
+}
+```
+
+### 4. Agregar un nuevo producto
+Copia y pega un bloque al final de `PRODUCTOS` con un `id` único consecutivo:
+```javascript
+{
+  id: 35,
+  nombre: "Alfajor de Pistacho",
+  descripcion: "Masa de cacao rellena de ganache de pistacho y chocolate blanco.",
+  precio: 3200,
+  categoria: "dulce",
+  imagen: "img/alfajor-pistacho.jpg",
+  disponible: true
+}
+```
+
+### 5. Agregar una nueva categoría
+Edita el array `CATEGORIAS`:
+```javascript
+{ id: "especiales", nombre: "Especiales", icono: "⭐" }
+```
+
+### 6. Dónde colocar las imágenes
+Guarda tus fotos en la carpeta `img/` con el mismo nombre que indicaste en la propiedad `imagen` del producto (por ejemplo `img/alfajor-pistacho.jpg`).
+
+---
+
+## 🚀 Cómo abrir y alojar la web
+
+1. **Abrir localmente**: Haz doble clic en `index.html` o usa cualquier navegador web.
+2. **Alojar gratis**: Puedes subir esta carpeta a **GitHub Pages**, **Vercel**, **Netlify**, o cualquier hosting web estándar.
